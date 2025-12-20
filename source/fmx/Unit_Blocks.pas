@@ -182,8 +182,13 @@ begin
 end;
 
 procedure TFormMain.SaveSettings;
+var S : String;
 begin
-  with TIniFile.Create(SettingsFile) do
+  S:=SettingsFile;
+
+  ForceDirectories(ExtractFilePath(S));
+
+  with TIniFile.Create(S) do
   try
     WriteBool(General,'Silent',Blocks.Silent);
     WriteBool(General,'LockRotation',Blocks.LockRotation);
@@ -455,6 +460,8 @@ begin
   begin
     S:=ScoreFile;
 
+    ForceDirectories(ExtractFilePath(S));
+
     if TFile.Exists(S) then
        TFile.Delete(S);
 
@@ -477,15 +484,19 @@ end;
 
 procedure TFormMain.SaveMatch;
 var S : TStrings;
+    Match : String;
 begin
   S:=TStringList.Create;
   try
+    Match:=MatchFile;
+    ForceDirectories(ExtractFilePath(Match));
+
     Blocks.SaveMatch(procedure(const Value:Integer)
     begin
       S.Add(IntToStr(Value));
     end);
 
-    S.SaveToFile(MatchFile);
+    S.SaveToFile(Match);
   finally
     S.Free;
   end;
