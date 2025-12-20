@@ -1,0 +1,6 @@
+sound_metal WAVE metal.wav
+sound_place WAVE place.wav
+sound_tap1 WAVE tap1.wav
+sound_tap2 WAVE tap2.wav
+sound_aire_boomerang WAVE aire_boomerang.wav
+sound_click WAVE click.wav
