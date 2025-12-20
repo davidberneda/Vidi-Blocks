@@ -10,6 +10,6 @@ Classic blocks game made with Embarcadero RAD Studio. Pure Delphi and Firemonkey
 
 ![Vidi Blocks](https://github.com/davidberneda/Vidi-Blocks/blob/main/media/Vidi_Blocks.png?raw=true)
 
-![Vidi Blocks](https://github.com/davidberneda/Vidi-Blocks/blob/main/media/Vidi_Blocks.gif?raw=true)
+![Vidi Blocks](https://github.com/davidberneda/Vidi-Blocks/blob/main/media/Vidi_Blocks_small.gif?raw=true)
 
 ![Vidi Blocks](https://github.com/davidberneda/Vidi-Blocks/blob/main/media/Vidi_Blocks_settings.png?raw=true)
