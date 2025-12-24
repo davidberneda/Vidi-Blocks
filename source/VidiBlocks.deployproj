@@ -4,15 +4,110 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
     <PropertyGroup>
-        <DeviceId Condition="'$(Platform)'=='Android'">NRH65XC6NFUSGIVS</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android'"/>
         <DeviceId Condition="'$(Platform)'=='Android64'">NRH65XC6NFUSGIVS</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'"/>
-    <ItemGroup Condition="'$(Platform)'=='Win32'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="$(SKIADIR)\Binary\Shared\Win32\sk4d.dll" Condition="'$(Config)'=='Release' And '$(SKIADIR)'!=''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(SKIADIR)\Binary\Shared\Win32\sk4d.dll" Condition="'$(Config)'=='Debug' And '$(SKIADIR)'!=''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\sk4d.dll" Condition="'$(Config)'=='Release' And '$(SKIADIR)'==''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\sk4d.dll" Condition="'$(Config)'=='Debug' And '$(SKIADIR)'==''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Android64'">
-        <DeployFile Include="Android64\Release\libVidiBlocks.so" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="Android64\Debug\styles-v35.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\res\values-v35\</RemoteDir>
+            <RemoteName>styles.xml</RemoteName>
+            <DeployClass>AndroidSplashStylesV35</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\armeabi-v7a\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\library\lib\armeabi-v7a\</RemoteDir>
+            <RemoteName>libVidiBlocks.so</RemoteName>
+            <DeployClass>AndroidLibnativeArmeabiv7aFile</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\AndroidManifest.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>AndroidManifest.xml</RemoteName>
+            <DeployClass>ProjectAndroidManifest</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\res\drawable-xxxhdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon192</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\styles.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\res\values\</RemoteDir>
+            <RemoteName>styles.xml</RemoteName>
+            <DeployClass>AndroidSplashStyles</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\colors-night-v21.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\res\values-night-v21\</RemoteDir>
+            <RemoteName>colors.xml</RemoteName>
+            <DeployClass>Android_ColorsDark</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Android64\Debug\libVidiBlocks.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>VidiBlocks\library\lib\arm64-v8a\</RemoteDir>
             <RemoteName>libVidiBlocks.so</RemoteName>
             <DeployClass>ProjectOutput</DeployClass>
@@ -22,43 +117,7 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
-        <DeployFile Include="Android64\Release\strings.xml" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\res\values\</RemoteDir>
-            <RemoteName>strings.xml</RemoteName>
-            <DeployClass>Android_Strings</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Android64\Release\colors.xml" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\res\values\</RemoteDir>
-            <RemoteName>colors.xml</RemoteName>
-            <DeployClass>Android_Colors</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Android64\Release\splash_image_def.xml" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\res\drawable\</RemoteDir>
-            <RemoteName>splash_image_def.xml</RemoteName>
-            <DeployClass>AndroidSplashImageDef</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_192x192.png" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\res\drawable-xxxhdpi\</RemoteDir>
-            <RemoteName>ic_launcher.png</RemoteName>
-            <DeployClass>Android_LauncherIcon192</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>VidiBlocks\library\lib\armeabi\</RemoteDir>
             <RemoteName>libVidiBlocks.so</RemoteName>
             <DeployClass>AndroidLibnativeArmeabiFile</DeployClass>
@@ -67,43 +126,16 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android64\Release\AndroidManifest.xml" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\</RemoteDir>
-            <RemoteName>AndroidManifest.xml</RemoteName>
-            <DeployClass>ProjectAndroidManifest</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Android64\Release\styles.xml" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="Android64\Debug\strings.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>VidiBlocks\res\values\</RemoteDir>
-            <RemoteName>styles.xml</RemoteName>
-            <DeployClass>AndroidSplashStyles</DeployClass>
+            <RemoteName>strings.xml</RemoteName>
+            <DeployClass>Android_Strings</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\library\lib\mips\</RemoteDir>
-            <RemoteName>libVidiBlocks.so</RemoteName>
-            <DeployClass>AndroidLibnativeMipsFile</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(BDS)\lib\android\debug\armeabi-v7a\libnative-activity.so" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>libVidiBlocks.so</RemoteName>
-            <DeployClass>AndroidLibnativeArmeabiv7aFile</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Android64\Release\styles-v21.xml" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="Android64\Debug\styles-v21.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>VidiBlocks\res\values-v21\</RemoteDir>
             <RemoteName>styles.xml</RemoteName>
             <DeployClass>AndroidSplashStylesV21</DeployClass>
@@ -112,19 +144,28 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android64\Release\styles-v35.xml" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\res\values-v35\</RemoteDir>
-            <RemoteName>styles.xml</RemoteName>
-            <DeployClass>AndroidSplashStylesV35</DeployClass>
+        <DeployFile Include="Android64\Debug\colors.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\res\values\</RemoteDir>
+            <RemoteName>colors.xml</RemoteName>
+            <DeployClass>Android_Colors</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android64\Release\colors-night-v21.xml" Condition="'$(Config)'=='Release'">
-            <RemoteDir>VidiBlocks\res\values-night-v21\</RemoteDir>
-            <RemoteName>colors.xml</RemoteName>
-            <DeployClass>Android_ColorsDark</DeployClass>
+        <DeployFile Include="Android64\Debug\splash_image_def.xml" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\res\drawable\</RemoteDir>
+            <RemoteName>splash_image_def.xml</RemoteName>
+            <DeployClass>AndroidSplashImageDef</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\lib\android\debug\mips\libnative-activity.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>VidiBlocks\library\lib\mips\</RemoteDir>
+            <RemoteName>libVidiBlocks.so</RemoteName>
+            <DeployClass>AndroidLibnativeMipsFile</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -132,7 +173,48 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Android'"/>
-    <ItemGroup Condition="'$(Platform)'=='Win64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win64'">
+        <DeployFile Include="$(BDS)\bin64\sk4d.dll" Condition="'$(Config)'=='Release' And '$(SKIADIR)'==''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin64\sk4d.dll" Condition="'$(Config)'=='Debug' And '$(SKIADIR)'==''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(SKIADIR)\Binary\Shared\Win64\sk4d.dll" Condition="'$(Config)'=='Release' And '$(SKIADIR)'!=''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(SKIADIR)\Binary\Shared\Win64\sk4d.dll" Condition="'$(Config)'=='Debug' And '$(SKIADIR)'!=''">
+            <RemoteDir>VidiBlocks\</RemoteDir>
+            <RemoteName>sk4d.dll</RemoteName>
+            <DeployClass>Skia</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='OSXARM64'"/>
     <ItemGroup Condition="'$(Platform)'=='iOSDevice64'"/>
     <ItemGroup Condition="'$(Platform)'=='iOSSimARM64'"/>
