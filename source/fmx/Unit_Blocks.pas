@@ -420,7 +420,17 @@ begin
   if Blocks.Score=Blocks.BestScore then
   begin
     AddBestScore;
+
+    {$IFDEF MSWINDOWS}
+    try
+      SaveBestScores;
+    except
+      on E:EFCreateError do
+         ShowMessage(E.Message);
+    end;
+    {$ELSE}
     SaveBestScores;
+    {$ENDIF}
   end;
 
   ChangeGameOverText;
@@ -454,9 +464,9 @@ begin
 end;
 
 procedure TFormMain.TrySaveBest;
-var S : String;
-begin
-  if Blocks.BestScore>Blocks.OldBest then
+
+  procedure DoSaveBest;
+  var S : String;
   begin
     S:=ScoreFile;
 
@@ -466,6 +476,22 @@ begin
        TFile.Delete(S);
 
     TFile.WriteAllText(S,IntToStr(Blocks.BestScore));
+  end;
+  
+begin
+  if Blocks.BestScore>Blocks.OldBest then
+  begin
+    {$IFDEF MSWINDOWS}
+    try
+      DoSaveBest;  
+    except
+      on E:Exception do
+         ShowMessage(E.Message);
+    end;
+    {$ELSE}
+    DoSaveBest;
+    {$ENDIF}
+
     Blocks.OldBest:=Blocks.BestScore;
   end;
 end;
@@ -483,23 +509,39 @@ begin
 end;
 
 procedure TFormMain.SaveMatch;
-var S : TStrings;
-    Match : String;
-begin
-  S:=TStringList.Create;
-  try
-    Match:=MatchFile;
-    ForceDirectories(ExtractFilePath(Match));
 
-    Blocks.SaveMatch(procedure(const Value:Integer)
-    begin
-      S.Add(IntToStr(Value));
-    end);
+  procedure DoSaveMatch;
+  var S : TStrings;
+      Match : String;
+  begin
+    S:=TStringList.Create;
+    try
+      Match:=MatchFile;
 
-    S.SaveToFile(Match);
-  finally
-    S.Free;
+      ForceDirectories(ExtractFilePath(Match));
+
+      Blocks.SaveMatch(procedure(const Value:Integer)
+      begin
+        S.Add(IntToStr(Value));
+      end);
+
+      S.SaveToFile(Match);
+    finally
+      S.Free;
+    end;
   end;
+
+begin
+  {$IFDEF MSWINDOWS}
+  try
+    DoSaveMatch;
+  except
+    on E:EFCreateError do
+       ShowMessage(E.Message);
+  end;
+  {$ELSE}
+  DoSaveMatch;
+  {$ENDIF}
 end;
 
 procedure TFormMain.FormDestroy(Sender: TObject);
@@ -636,7 +678,18 @@ begin
     begin
       ChangeGameOverText;
 
-      SaveSettings;
+      {$IFDEF MSWINDOWS}
+      try
+        SaveSettings;
+      except
+        on E:EIniFileException do
+           ShowMessage(E.Message);
+
+      end;
+      {$ELSE}
+        SaveSettings;
+      {$ENDIF}
+
       Invalidate;
     end);
 end;
