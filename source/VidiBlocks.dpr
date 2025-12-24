@@ -4,7 +4,6 @@ program VidiBlocks;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  FMX.Skia,
 
   //FMX.Skia,
 
@@ -23,7 +22,6 @@ uses
 {$R *.res}
 
 begin
-  GlobalUseSkia := True;
   //GlobalUseSkia := False;
 
   {$IFOPT D+}
