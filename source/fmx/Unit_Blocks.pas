@@ -450,6 +450,12 @@ end;
 
 procedure TFormMain.BlocksPlaySound(Sender:TObject; const AName:String);
 begin
+  {
+   Debug:
+  ShowMessage(AName);
+  Exit;
+  }
+
   {$IFDEF MSWINDOWS}
   Vidi_PlaySound_Resource('sound_'+AName);
   {$ELSE}
